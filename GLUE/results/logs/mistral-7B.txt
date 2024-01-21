@@ -1,0 +1,28 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so
+CUDA SETUP: CUDA runtime path found: /usr/lib/x86_64-linux-gnu/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 115
+CUDA SETUP: Loading binary /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so...
+Doing Llama tokenizer thingy
+pre-trained model's BOS EOS and PAD token id: 1 2 1  => It should be 1 2 None
+[8250, 6110, 6995, 4365]
+0 3270 0.0 0.681651376146789
+Elapsed time:  201.24536442756653  sec
+1 3270 0.8412844036697248 0.846788990825688
+Elapsed time:  307.5093116760254  sec
+2 3270 0.8363914373088684 0.8357798165137614
+Elapsed time:  386.17941403388977  sec
+3 3270 0.8336391437308869 0.8330275229357799
+Elapsed time:  462.9314377307892  sec
+4 3270 0.8308868501529052 0.8302752293577982
+Elapsed time:  577.4189596176147  sec
+5 3270 0.8351681957186544 0.8342507645259939
+Elapsed time:  688.1994025707245  sec

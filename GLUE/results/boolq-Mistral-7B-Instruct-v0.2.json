@@ -1,0 +1,6 @@
+{"n_shot": 0, "accuracy": 0.8, "accuracy_TF": 0.9, "time": 3.072127342224121}
+{"n_shot": 1, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 1.4901878833770752}
+{"n_shot": 2, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 1.79170560836792}
+{"n_shot": 3, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 2.4902145862579346}
+{"n_shot": 4, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 78.29889607429504}
+{"n_shot": 5, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 3.2266273498535156}
