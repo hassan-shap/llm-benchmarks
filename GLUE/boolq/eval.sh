@@ -1,0 +1,13 @@
+torchrun --nproc_per_node=1 --master_port=1234 eval_andrey_fire_boolq.py \
+    --model_name mistralai/Mistral-7B-v0.1 \
+    --base True \
+    --first_layer_dropped 0 \
+    --num_layer_dropped 1 \
+    --layer_drop_pattern cos-sim \
+    --BATCH_SIZE 32 \
+    --dataset_name hassansh/boolq_n_shot \
+    --num_shots 0 \
+    --top_k 10 \
+    --save True \
+    --out_path cossim_results \
+    --details True

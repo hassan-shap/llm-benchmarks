@@ -45,7 +45,7 @@ def evaluate_model(model = None,
 
     # Load the dataset
     dataset = load_dataset(dataset_name, name = f"{num_shots}_shot")[split]
-
+    print(dataset)
     # Create the n-shot string to append
     # if num_shots > 0:
     #     dataset_size = len(dataset)
@@ -211,13 +211,13 @@ print(f"EOS {tokenizer.eos_token_id} BOS {tokenizer.bos_token_id} PAD {tokenizer
 ############################################################
 ################### only changing these ####################
 #### boolq ########
-# dataset_name = "hassansh/boolq_n_shot"  # The boolq dataset name in Hugging Face Datasets
-# s0 = "No" #"False"
-# s1 = "Yes" #"True"
-# #### copa ########
-dataset_name = "hassansh/copa_n_shot"  # The copa dataset name in Hugging Face Datasets
-s0 = "1" #"choice1"
-s1 = "2" #"choice2"
+dataset_name = "hassansh/boolq_n_shot"  # The boolq dataset name in Hugging Face Datasets
+s0 = "No" #"False"
+s1 = "Yes" #"True"
+# # #### copa ########
+# dataset_name = "hassansh/copa_n_shot"  # The copa dataset name in Hugging Face Datasets
+# s0 = "1" #"choice1"
+# s1 = "2" #"choice2"
 # ############################################################
 split = "test"  # Specify the dataset split (e.g., 'test')
 num_shots = 5  # Number of few-shot examples to use

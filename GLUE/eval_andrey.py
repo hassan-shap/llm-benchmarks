@@ -44,7 +44,7 @@ def evaluate_model(model = None,
     tokenizer.pad_token_id = 1
 
     # Load the dataset
-    dataset = load_dataset(dataset_name, name = f"{num_shots}_shot")[split]
+    dataset = load_dataset(dataset_name, name = f"{num_shots}_shot")[split].select(range(200))
 
     # Create the n-shot string to append
     # if num_shots > 0:
@@ -202,18 +202,22 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 print(f"EOS {tokenizer.eos_token_id} BOS {tokenizer.bos_token_id} PAD {tokenizer.pad_token_id}")
 ############################################################
 ################### only changing these ####################
-#### boolq ########
-# dataset_name = "hassansh/boolq_n_shot"  # The boolq dataset name in Hugging Face Datasets
-# s0 = "No" #"False"
-# s1 = "Yes" #"True"
+### boolq ########
+dataset_name = "hassansh/boolq_n_shot"  # The boolq dataset name in Hugging Face Datasets
+s0 = "No" #"False"
+s1 = "Yes" #"True"
 # #### copa ########
 # dataset_name = "hassansh/copa_n_shot"  # The copa dataset name in Hugging Face Datasets
 # s0 = "1" #"choice1"
 # s1 = "2" #"choice2"
-# #### rte ########
-dataset_name = "hassansh/rte_n_shot"  # The rte dataset name in Hugging Face Datasets
-s0 = "False" #"not_entailment"
-s1 = "True" #"entailment"
+# # #### rte ########
+# dataset_name = "hassansh/rte_n_shot"  # The rte dataset name in Hugging Face Datasets
+# s0 = "False" #"not_entailment"
+# s1 = "True" #"entailment"
+# # #### multirc ########
+# dataset_name = "hassansh/multirc_n_shot"  # The rte dataset name in Hugging Face Datasets
+# s0 = "False" #"not_entailment"
+# s1 = "True" #"entailment"
 # ############################################################
 split = "test"  # Specify the dataset split (e.g., 'test')
 save = True
@@ -259,7 +263,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 model.eval()
 
-for n_shot in range(6):
+for n_shot in range(2):
     score = evaluate_model(model,
                         tokenizer,
                         dataset_name = dataset_name, 
