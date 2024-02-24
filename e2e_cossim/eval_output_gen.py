@@ -10,8 +10,8 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 32
-num_batches = 2
+BATCH_SIZE = 8
+num_batches = 200
 
 # model_name = "meta-llama/Llama-2-70b-hf"
 model_name = "mistralai/Mistral-7B-v0.1"
@@ -115,7 +115,7 @@ for batch in data_loader:
         # x = base_model.lm_head(x)
     last_token_vec.append(outs[row_indices,last_token,:])
 
-    if i % 10 == 0 :
+    if i % 100 == 0 :
         out_dir = "base_data/"
         fname = out_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
         last_token_sim_save= torch.cat(last_token_vec, dim = 0).tolist()

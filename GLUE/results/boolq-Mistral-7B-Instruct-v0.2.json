@@ -1,6 +1,3 @@
-{"n_shot": 0, "accuracy": 0.8, "accuracy_TF": 0.9, "time": 3.072127342224121}
-{"n_shot": 1, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 1.4901878833770752}
-{"n_shot": 2, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 1.79170560836792}
-{"n_shot": 3, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 2.4902145862579346}
-{"n_shot": 4, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 78.29889607429504}
-{"n_shot": 5, "accuracy": 0.9, "accuracy_TF": 0.9, "time": 3.2266273498535156}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d2faeec10159d6b7d00dba4cdc9be16c1bb2090fd2a3a4590c830cadd7dc59a2
+size 470

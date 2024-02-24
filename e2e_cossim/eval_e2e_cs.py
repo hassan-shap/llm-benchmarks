@@ -10,8 +10,8 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 64
-num_batches = 1
+BATCH_SIZE = 8
+num_batches = 200
 
 # model_name = "meta-llama/Llama-2-70b-hf"
 model_name = "mistralai/Mistral-7B-v0.1"
@@ -59,7 +59,7 @@ orig_vec = torch.tensor(json.load(f))
 f.close()
 # print(orig_vec.shape, orig_vec.dtype)
 
-block_size_list = range(1,17)
+block_size_list = range(24,0,-1)
 num_layers = len(base_model.model.layers)
 for block_size in block_size_list:
     cos_sim = []
