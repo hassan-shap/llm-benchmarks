@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 forward\ pass/data
-
+benchmarks_aws/cossim/data
+benchmarks_aws/cossim/log_files
