@@ -1,0 +1,62 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so
+CUDA SETUP: CUDA runtime path found: /usr/lib/x86_64-linux-gnu/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 115
+CUDA SETUP: Loading binary /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so...
+ HERE ARE THE SPECIAL TOKENS 1, 1, 2
+We are removing: [77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1331.9269950278103, acc: 0.8492354740061162
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_77_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_77_shots_0/accuracy.json
+We are removing: [73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1267.3325917664915, acc: 0.7201834862385321
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_73_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_73_shots_0/accuracy.json
+We are removing: [69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1200.7182995527983, acc: 0.7033639143730887
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_69_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_69_shots_0/accuracy.json
+We are removing: [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1135.9378061238676, acc: 0.6694189602446483
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_65_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_65_shots_0/accuracy.json
+We are removing: [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1070.374926796183, acc: 0.6351681957186545
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_61_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_61_shots_0/accuracy.json
+We are removing: [57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 1004.154672132805, acc: 0.6253822629969419
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_57_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_57_shots_0/accuracy.json
+We are removing: [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 941.1167192906141, acc: 0.6238532110091743
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_53_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_53_shots_0/accuracy.json
+We are removing: [49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 875.8636071737856, acc: 0.6220183486238532
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_49_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_49_shots_0/accuracy.json
+We are removing: [45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 809.413696417585, acc: 0.6137614678899083
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_45_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_45_shots_0/accuracy.json
+We are removing: [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 744.8020705468953, acc: 0.19847094801223242
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_41_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_41_shots_0/accuracy.json
+We are removing: [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 679.2344187628478, acc: 0.6012232415902141
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_37_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_37_shots_0/accuracy.json
+We are removing: [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78] layers
+meta-llama/Llama-2-70b-hf time: 613.2169500254095, acc: 0.5281345565749236
+saving model to results_no_prompt/Llama-2-70b-hf/num_ldrop_33_shots_0/model.json
+saving accuracy to results_no_prompt/Llama-2-70b-hf/num_ldrop_33_shots_0/accuracy.json

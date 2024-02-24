@@ -184,7 +184,7 @@ def evaluate_model(model_name : str = 'None',
             last_token+=1
 
         # print(row_indices, last_token)
-        print("Last token is", tokenizer.decode(input_ids[row_indices, last_token]))
+        # print("Last token is", tokenizer.decode(input_ids[row_indices, last_token]))
 
         # Generate the model's response
         with torch.no_grad():

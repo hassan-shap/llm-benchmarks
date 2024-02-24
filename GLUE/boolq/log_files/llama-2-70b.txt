@@ -1,0 +1,30 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so
+CUDA SETUP: CUDA runtime path found: /usr/lib/x86_64-linux-gnu/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 8.0
+CUDA SETUP: Detected CUDA version 115
+CUDA SETUP: Loading binary /home/hshapour/.pyenv/versions/pytorch/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda115.so...
+ HERE ARE THE SPECIAL TOKENS 1, 1, 2
+We are removing: [62, 63] layers
+meta-llama/Llama-2-70b-hf time: 1370.0974885039032, acc: 0.8737003058103976
+saving model to cossim_results/Llama-2-70b-hf/num_ldrop_2_shots_0/model.json
+saving accuracy to cossim_results/Llama-2-70b-hf/num_ldrop_2_shots_0/accuracy.json
+We are removing: [60, 61, 62, 63, 64, 65] layers
+meta-llama/Llama-2-70b-hf time: 1303.4574620705098, acc: 0.8574923547400611
+saving model to cossim_results/Llama-2-70b-hf/num_ldrop_6_shots_0/model.json
+saving accuracy to cossim_results/Llama-2-70b-hf/num_ldrop_6_shots_0/accuracy.json
+We are removing: [58, 59, 60, 61, 62, 63, 64, 65, 66, 67] layers
+meta-llama/Llama-2-70b-hf time: 1235.9400894120336, acc: 0.8556574923547401
+saving model to cossim_results/Llama-2-70b-hf/num_ldrop_10_shots_0/model.json
+saving accuracy to cossim_results/Llama-2-70b-hf/num_ldrop_10_shots_0/accuracy.json
+We are removing: [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68] layers
+meta-llama/Llama-2-70b-hf time: 1168.741419237107, acc: 0.7348623853211009
+saving model to cossim_results/Llama-2-70b-hf/num_ldrop_14_shots_0/model.json
+saving accuracy to cossim_results/Llama-2-70b-hf/num_ldrop_14_shots_0/accuracy.json

@@ -10,8 +10,8 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 8
-num_batches = 14
+BATCH_SIZE = 64
+num_batches = 1
 
 # model_name = "meta-llama/Llama-2-70b-hf"
 model_name = "mistralai/Mistral-7B-v0.1"
