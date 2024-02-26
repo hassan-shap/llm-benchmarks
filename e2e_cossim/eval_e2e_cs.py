@@ -11,7 +11,7 @@ from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_m
 from torch.utils.data import DataLoader
 
 BATCH_SIZE = 8
-num_batches = 200
+num_batches = 20
 
 # model_name = "meta-llama/Llama-2-70b-hf"
 model_name = "mistralai/Mistral-7B-v0.1"
@@ -53,7 +53,8 @@ data_loader = DataLoader(dataset, batch_size=BATCH_SIZE, collate_fn=collate_fn)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 orig_data_dir = "base_data/"
-orig_fname = orig_data_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
+orig_fname = orig_data_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
+# orig_fname = orig_data_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
 f = open(orig_fname)
 orig_vec = torch.tensor(json.load(f))
 f.close()
@@ -118,7 +119,7 @@ for block_size in block_size_list:
                     # x_list.append(x[row_indices,last_token,:].to(torch.float32).cpu())
 
                 x = base_model.model.norm(x)
-                x = base_model.lm_head(x)
+                # x = base_model.lm_head(x)
 
 
             last_token_vec.append(x[row_indices,last_token,:])
@@ -137,7 +138,7 @@ for block_size in block_size_list:
         cos_sim.append(cos(orig_vec,new_vec).tolist())
 
     out_dir = "skip_data/"
-    fname = out_dir+ f"l_{block_size}_output_c4_{model_name.split('/')[-1]}.json"
+    fname = out_dir+ f"l_{block_size}_tf_output_c4_{model_name.split('/')[-1]}.json"
     with open(fname, 'w') as f:
         json.dump(cos_sim, f)
 
