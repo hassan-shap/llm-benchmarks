@@ -106,11 +106,11 @@ for batch in data_loader:
 
     similarity = []
     with torch.no_grad():
-        # output = base_model(input_ids)
-        # outs = output.logits.squeeze()
-        # if len(batch['input']) == 1:
-        #     outs = outs.unsqueeze(0)
-        outs = base_model.model(input_ids)[0]
+        output = base_model(input_ids)
+        outs = output.logits.squeeze()
+        if len(batch['input']) == 1:
+            outs = outs.unsqueeze(0)
+        # outs = base_model.model(input_ids)[0]
 
         # outs = base_model.model.norm(outs)
         # x = base_model.lm_head(x)
