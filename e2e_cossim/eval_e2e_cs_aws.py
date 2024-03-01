@@ -10,9 +10,6 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-def cross_entropy(input, target):
-    return -torch.sum(target * torch.log(input), dim = 1)
-
 BATCH_SIZE = 2
 num_batches = 80
 
@@ -20,6 +17,7 @@ model_name = "/data/llama-hf/Llama-2-13b-hf"
 # model_name = "mistralai/Mistral-7B-v0.1"
 
 torch.cuda.empty_cache()
+
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",
@@ -32,10 +30,8 @@ base_model = AutoModelForCausalLM.from_pretrained(
     model_name,
     quantization_config=bnb_config,
     device_map=device_map,
-    # cache_dir = local_dir,
-    pad_token_id=1,
-    trust_remote_code = True
-)
+    # cache_dir = "/dev/shm/hassan/.cahce/"
+    )
 
 base_model.eval()
 
@@ -62,13 +58,12 @@ f = open(orig_fname)
 # print(json.load(f))
 orig_vec = torch.tensor(json.load(f))
 f.close()
-orig_vec = torch.nn.functional.softmax(orig_vec, dim = 1)
-# print(orig_vec.shape, orig_vec.dtype)
+# print(orig_vec.shape)
 
-block_size_list = range(24,0,-1)
+block_size_list = range(6,0,-1)
 num_layers = len(base_model.model.layers)
 for block_size in block_size_list:
-    cos_sim = []
+    distance = []
     # print(block_size, " : " )
     tic = time.time()
     for layer in range(num_layers-block_size+1):
@@ -129,26 +124,16 @@ for block_size in block_size_list:
 
             last_token_vec.append(x[row_indices,last_token,:])
 
-            # if i % 10 == 0 :
-            #     out_dir = "skip_data/"
-            #     fname = out_dir+ f"skip_output_c4_{model_name.split('/')[-1]}.json"
-            #     last_token_sim_save= torch.cat(last_token_vec, dim = 1).tolist()
-            #     with open(fname, 'w') as f:
-            #         json.dump(last_token_sim_save, f)
-
-        # print(len(last_token_vec))
         new_vec= torch.cat(last_token_vec, dim = 0).to(torch.float32).cpu()
-        # print(new_vec.shape)
-        # cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
-        # cos_sim.append(cos(orig_vec,new_vec).tolist())
-        cos_sim.append(cross_entropy(torch.nn.functional.softmax(new_vec,dim=1), orig_vec).tolist())
+
+        cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
+        distance.append(cos(orig_vec,new_vec).tolist())
         #torch.nn.functional.cross_entropy(new_vec,orig_vec).tolist())
 
     out_dir = "skip_data/"
-    # fname = out_dir+ f"l_{block_size}_tf_output_c4_{model_name.split('/')[-1]}.json"
-    fname = out_dir+ f"c_entropy_l_{block_size}_output_c4_{model_name.split('/')[-1]}.json"
+    fname = out_dir+ f"l_{block_size}_output_c4_{model_name.split('/')[-1]}.json"
     with open(fname, 'w') as f:
-        json.dump(cos_sim, f)
+        json.dump(distance, f)
 
     toc = time.time()
 

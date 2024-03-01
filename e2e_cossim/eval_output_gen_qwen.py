@@ -10,8 +10,8 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 4
-num_batches = 40
+BATCH_SIZE = 2
+num_batches = 80
 
 model_name = "Qwen/Qwen-7B"
 # model_name = "microsoft/phi-2"
@@ -120,25 +120,25 @@ for batch in data_loader:
 
     similarity = []
     with torch.no_grad():
-        # output = base_model(input_ids)
-        # outs = output.logits.squeeze()
-        # if len(batch['input']) == 1:
-        #     outs = outs.unsqueeze(0)
-        outs = base_model.transformer(input_ids)[0]
+        output = base_model(input_ids)
+        outs = output.logits.squeeze()
+        if len(batch['input']) == 1:
+            outs = outs.unsqueeze(0)
+        # outs = base_model.transformer(input_ids)[0]
 
         # outs = base_model.model.norm(outs)
         # x = base_model.lm_head(x)
     last_token_vec.append(outs[row_indices,last_token,:])
 
-    if i % 100 == 0 :
-        out_dir = "base_data/"
-        fname = out_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
-        last_token_sim_save= torch.cat(last_token_vec, dim = 0).tolist()
-        with open(fname, 'w') as f:
-            json.dump(last_token_sim_save, f)
+    # if i % 100 == 0 :
+    #     out_dir = "base_data/"
+    #     fname = out_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
+    #     last_token_sim_save= torch.cat(last_token_vec, dim = 0).tolist()
+    #     with open(fname, 'w') as f:
+    #         json.dump(last_token_sim_save, f)
 
 out_dir = "base_data/"
-fname = out_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
+fname = out_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
 last_token_sim_save= torch.cat(last_token_vec, dim = 0).tolist()
 with open(fname, 'w') as f:
     json.dump(last_token_sim_save, f)

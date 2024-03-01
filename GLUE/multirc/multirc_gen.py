@@ -44,6 +44,7 @@ for i, ex in enumerate(ex_inds):
         prompt += "Question: " + dd[idx]['question'] + '\n'
         prompt += "Candiate answer: " + dd[idx]['answer'] + '\n'
         prompt += "Answer:" + dd[idx]['label_str'] 
+        # prompt += "(True/False):" + dd[idx]['label_str'] 
         # prompt += dd[idx]['label_str'] #+ '\n\n'
     example_prompt.append(prompt)
 
@@ -61,7 +62,7 @@ def json_writer(JSON_PATH, num_qs, n_shot_example,seed=10,space=False):
                 print(f"{ind//step}")#, end='\r')
 
             idx_ex_shuffle = torch.randperm(5)
-            init_prompt = "Based on the paragraph, determine whether the candidate answer to the question is True or False.\n\n"
+            init_prompt = ""#Based on the paragraph, determine whether the candidate answer to the question is True or False.\n\n"
             for i in range(n_shot_example):
                 init_prompt +=  example_prompt[idx_ex_shuffle[i]] + '\n\n'
 
@@ -73,6 +74,7 @@ def json_writer(JSON_PATH, num_qs, n_shot_example,seed=10,space=False):
                 prompt += "Question: " + dd[idx_q]['question'] + '\n'
                 prompt += "Candidate answer: " + dd[idx_q]['answer'] + '\n'
                 prompt += "Answer:"
+                # prompt += "(True/False):"
                 
                 qlist['question'] = ind
                 qlist['input'] = prompt

@@ -10,8 +10,13 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 4
-num_batches = 40
+def KL_divergence(input, target):
+    eps = 1e-9
+    return torch.sum(target * torch.log(target/(input+eps)+eps), dim = 1)
+
+BATCH_SIZE = 2
+num_batches = 80
+Temp_list = [2.0,0.5,1.0]
 
 model_name = "Qwen/Qwen-7B"
 # model_name = "microsoft/phi-2"
@@ -58,17 +63,23 @@ data_loader = DataLoader(dataset, batch_size=BATCH_SIZE, collate_fn=collate_fn)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 orig_data_dir = "base_data/"
-orig_fname = orig_data_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
-# orig_fname = orig_data_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
+# orig_fname = orig_data_dir+ f"tf_output_c4_{model_name.split('/')[-1]}.json"
+orig_fname = orig_data_dir+ f"output_c4_{model_name.split('/')[-1]}.json"
 f = open(orig_fname)
 orig_vec = torch.tensor(json.load(f))
 f.close()
 # print(orig_vec.shape, orig_vec.dtype)
+orig_probs = {}
+for Temp in Temp_list:
+    orig_probs[f"{Temp}"] = torch.nn.functional.softmax(orig_vec/Temp, dim = 1)
 
-block_size_list = range(24,0,-1)
+block_size_list = range(8,0,-1)
 num_layers = len(base_model.transformer.h)
 for block_size in block_size_list:
-    cos_sim = []
+    # cos_sim = []
+    distance = {}
+    for Temp in Temp_list:
+        distance[f"{Temp}"] = []
     # print(block_size, " : " )
     tic = time.time()
     for layer in range(num_layers-block_size+1):
@@ -133,7 +144,7 @@ for block_size in block_size_list:
                     # x_list.append(x[row_indices,last_token,:].to(torch.float32).cpu())
 
                 x = base_model.transformer.ln_f(x)
-                # x = base_model.lm_head(x)
+                x = base_model.lm_head(x)
 
             last_token_vec.append(x[row_indices,last_token,:])
 
@@ -147,13 +158,17 @@ for block_size in block_size_list:
         # print(len(last_token_vec))
         new_vec= torch.cat(last_token_vec, dim = 0).to(torch.float32).cpu()
         # print(new_vec.shape)
-        cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
-        cos_sim.append(cos(orig_vec,new_vec).tolist())
+        # cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
+        # cos_sim.append(cos(orig_vec,new_vec).tolist())
+        for Temp in Temp_list:
+            distance[f"{Temp}"].append(KL_divergence(torch.nn.functional.softmax(new_vec/Temp,dim=1), orig_probs[f"{Temp}"]).tolist())#torch.nn.functional.cross_entropy(new_vec,orig_vec).tolist())
 
     out_dir = "skip_data/"
-    fname = out_dir+ f"l_{block_size}_tf_output_c4_{model_name.split('/')[-1]}.json"
-    with open(fname, 'w') as f:
-        json.dump(cos_sim, f)
+    # fname = out_dir+ f"l_{block_size}_tf_output_c4_{model_name.split('/')[-1]}.json"
+    for Temp in Temp_list:
+        fname = out_dir+ f"KL_T_{Temp:.1f}_l_{block_size}_output_c4_{model_name.split('/')[-1]}.json"
+        with open(fname, 'w') as f:
+            json.dump(distance[f"{Temp}"], f)
 
     toc = time.time()
 
