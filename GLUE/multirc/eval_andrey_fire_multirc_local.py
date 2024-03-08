@@ -31,14 +31,14 @@ def collate_fn(examples):
     answers = [example['questions']['answer'] for example in examples]
     return {'input': prompts, 'target': answers}
 
-# model_name = "mistralai/Mistral-7B-v0.1"
-model_name = "meta-llama/Llama-2-70b-hf"
+model_name = "mistralai/Mistral-7B-v0.1"
+# model_name = "meta-llama/Llama-2-70b-hf"
 base = True
 tuned_model_dir = ""
 first_layer_dropped = 0
 # layer_drop_pattern = "cos-sim"
 layer_drop_pattern = "end"
-BATCH_SIZE = 4
+BATCH_SIZE = 32
 instruction = ''
 dataset_name = "hassansh/multirc_n_shot"
 split = 'test' 
@@ -86,9 +86,9 @@ print(f" HERE ARE THE SPECIAL TOKENS {tokenizer.pad_token_id}, {tokenizer.bos_to
 # base_model = AutoModelForCausalLM.from_pretrained(model_name)
 # base_model = base_model.to(device = device)
 
-# for num_layer_dropped in range(2,79, 4):
-for first_layer_dropped in range(29,15,-4):
-# for first_layer_dropped in [78]:
+# for num_layer_dropped in range(1,32):
+# for first_layer_dropped in range(31,7,-1):
+for first_layer_dropped in [7]:
     #### START CLOCK ####
     start_time = timeit.default_timer()
 

@@ -10,9 +10,9 @@ import time
 from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
 from torch.utils.data import DataLoader
 
-BATCH_SIZE = 2
+BATCH_SIZE = 1
 num_batches = 10000
-step_list = torch.arange(1,25)
+step_list = torch.arange(1,65)
 
 # model_name = "/data/llama-hf/Llama-2-7b-hf"
 # model_name = "meta-llama/Llama-2-13b-hf"
