@@ -1,5 +1,3 @@
-# Save the README.md content to a file
-readme_content = """
 # LLM Benchmarks
 
 This repository provides tools and scripts for benchmarking various open-weight pretrained large language models (LLMs) using the Hugging Face API. The benchmarks are designed to evaluate model performance across a variety of tasks, including cosine similarity analysis and model evaluations on benchmark datasets like BoolQ and MMLU.
