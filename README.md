@@ -21,7 +21,7 @@ All pretrained models used in this repository are accessed through the [Hugging 
 ## Citation
 If you use ideas from our paper in your work, please cite it as follows:
 
-@article{,
+@article{gromov2024the,
   title={The Unreasonable Ineffectiveness of the Deeper Layers},
   author={A. Gromov, K. Tirumala, H. Shapourian, P. Glorioso, D. A. Roberts},
   journal={arXiv preprint arXiv:2403.17887},
